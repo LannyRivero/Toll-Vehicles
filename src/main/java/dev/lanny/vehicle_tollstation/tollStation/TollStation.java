@@ -27,6 +27,9 @@ public class TollStation {
     @OneToMany
     private List<Vehicle> registeredVehicles = new ArrayList<>();
 
+    public TollStation() {       
+    }
+
     public TollStation(String name, String city) {
         this.name = name;
         this.city = city;
@@ -52,5 +55,17 @@ public class TollStation {
 
     public List<Vehicle> getRegisteredVehicles() {
         return registeredVehicles;
-    }    
+    } 
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setTotalCollected(BigDecimal totalCollected) {
+        this.totalCollected = totalCollected;
+    }
 }
