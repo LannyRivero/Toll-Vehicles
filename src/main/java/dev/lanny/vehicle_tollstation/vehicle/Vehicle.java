@@ -45,4 +45,16 @@ public class Vehicle {
     public VehicleType getType() {
         return type;
     }    
+
+    public void setLicensePlate(String licensePlate) {
+        this.licensePlate = licensePlate;
+    }
+
+    public void setTollAmount(BigDecimal tollAmount) {
+        this.tollAmount = tollAmount;
+    }
+
+    public void setType(VehicleType type) {
+        this.type = type;
+    }
 }
