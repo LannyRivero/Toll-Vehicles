@@ -71,5 +71,7 @@ public class TollStation {
 
     public void addVehicle(Vehicle vehicle) {
         registeredVehicles.add(vehicle);
+        totalCollected = totalCollected.add(vehicle.getTollAmount());
     }
+    
 }

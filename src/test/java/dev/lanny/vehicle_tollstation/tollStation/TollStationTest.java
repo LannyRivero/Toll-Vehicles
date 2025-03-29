@@ -3,7 +3,6 @@ package dev.lanny.vehicle_tollstation.tollStation;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
-import java.util.Locale.Category;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
