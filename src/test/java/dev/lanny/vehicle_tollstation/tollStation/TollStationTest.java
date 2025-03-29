@@ -20,4 +20,18 @@ public class TollStationTest {
         assertTrue(station.getRegisteredVehicles().isEmpty());
     }
 
+    @Test
+    @DisplayName("Validate update TollStation fields using setters")
+    void test_Should_Update_TollStation_Fields() {
+        TollStation station = new TollStation();
+
+        station.setName("New Station");
+        station.setCity("Barcelona");
+        station.setTotalCollected(new BigDecimal("250.00"));
+
+        assertEquals("New Station", station.getName());
+        assertEquals("Barcelona", station.getCity());
+        assertEquals(new BigDecimal("250.00"), station.getTotalCollected());
+    }
+
 }
