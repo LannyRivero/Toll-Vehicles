@@ -68,4 +68,8 @@ public class TollStation {
     public void setTotalCollected(BigDecimal totalCollected) {
         this.totalCollected = totalCollected;
     }
+
+    public void addVehicle(Vehicle vehicle) {
+        registeredVehicles.add(vehicle);
+    }
 }
