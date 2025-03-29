@@ -3,6 +3,7 @@ package dev.lanny.vehicle_tollstation.tollStation;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
+import java.util.Locale.Category;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -47,6 +48,20 @@ public class TollStationTest {
 
         assertEquals(1, station.getRegisteredVehicles().size());
         assertEquals("ABC123", station.getRegisteredVehicles().get(0).getLicensePlate());
+    }
+
+    @Test
+    @DisplayName("Validate update totalCollected when a vehicle is added")
+    void test_Should_Update_Total_Collected_When_Vehicle_Is_Added() {
+        TollStation station = new TollStation("Station A", "Madrid");
+
+        Vehicle car = new Vehicle("CAR001", new BigDecimal("100.00"), VehicleType.CAR);
+        Vehicle truck = new Vehicle("TRK001", new BigDecimal("150.00"), VehicleType.TRUCK);
+
+        station.addVehicle(car);
+        station.addVehicle(truck);
+
+        assertEquals(new BigDecimal("250.00"), station.getTotalCollected());
     }
 
 }
