@@ -9,7 +9,7 @@ import dev.lanny.vehicle_tollstation.vehicle.VehicleDTO;
 
 public class TollService {
 
-     private final Map<Long, TollStation> tollStations = new HashMap<>();
+    private final Map<Long, TollStation> tollStations = new HashMap<>();
 
     public void addTollStation(Long id, TollStation station) {
         tollStations.put(id, station);
@@ -20,16 +20,17 @@ public class TollService {
     }
 
     public Vehicle registerVehicle(VehicleDTO dto) {
-    BigDecimal tollAmount;
+        if (dto.getType() == null) {
+            throw new IllegalArgumentException("Vehicle type cannot be null");
+        }
+        BigDecimal tollAmount;
 
-    switch (dto.getType()) {
-        case CAR -> tollAmount = new BigDecimal("100.00");
-        default -> throw new IllegalArgumentException("Unsupported vehicle type");
+        switch (dto.getType()) {
+            case CAR -> tollAmount = new BigDecimal("100.00");
+            default -> throw new IllegalArgumentException("Unsupported vehicle type");
+        }
+
+        return new Vehicle(dto.getLicensePlate(), tollAmount, dto.getType());
     }
-
-    return new Vehicle(dto.getLicensePlate(), tollAmount, dto.getType());
-}
-
-
 
 }
