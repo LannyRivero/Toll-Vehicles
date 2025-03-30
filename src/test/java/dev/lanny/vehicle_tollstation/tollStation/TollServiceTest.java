@@ -59,4 +59,21 @@ public class TollServiceTest {
             tollService.registerVehicle(dto);
         });
     }
+
+    @Test
+    @DisplayName("Validate calculate toll for truck using axle count (4 axles = $200)")
+    void test_Should_Calculate_Toll_For_Truck_Correctly() {
+        VehicleDTO dto = new VehicleDTO();
+        dto.setLicensePlate("TRK888");
+        dto.setType(VehicleType.TRUCK);
+        dto.setTollStationId(1L);
+        dto.setAxleCount(4);
+
+        Vehicle vehicle = tollService.registerVehicle(dto);
+
+        BigDecimal expected = BigDecimal.valueOf(200L).setScale(2);
+        BigDecimal actual = vehicle.getTollAmount().setScale(2);
+
+        assertEquals(0, actual.compareTo(expected));
+    }
 }
