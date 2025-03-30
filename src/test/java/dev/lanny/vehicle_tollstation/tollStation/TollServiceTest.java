@@ -46,4 +46,17 @@ public class TollServiceTest {
 
         assertEquals(new BigDecimal("100.00"), vehicle.getTollAmount());
     }
+
+    @Test
+    @DisplayName("VAlidate throw exception for unknown vehicle type")
+    void test_Should_Throw_Exception_For_Unknown_Type() {
+        VehicleDTO dto = new VehicleDTO();
+        dto.setLicensePlate("FAIL001");
+        dto.setTollStationId(1L);
+        dto.setType(null);
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            tollService.registerVehicle(dto);
+        });
+    }
 }
