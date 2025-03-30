@@ -27,10 +27,15 @@ public class TollService {
 
         switch (dto.getType()) {
             case CAR -> tollAmount = new BigDecimal("100.00");
+            case MOTORCYCLE -> tollAmount = new BigDecimal("50.00");
+            case TRUCK -> tollAmount = BigDecimal.valueOf(50L * dto.getAxleCount()).setScale(2);
             default -> throw new IllegalArgumentException("Unsupported vehicle type");
         }
 
-        return new Vehicle(dto.getLicensePlate(), tollAmount, dto.getType());
+        Vehicle vehicle = new Vehicle(dto.getLicensePlate(), tollAmount, dto.getType());
+        TollStation station = tollStations.get(dto.getTollStationId());
+        station.addVehicle(vehicle);
+        return vehicle;
     }
 
 }
